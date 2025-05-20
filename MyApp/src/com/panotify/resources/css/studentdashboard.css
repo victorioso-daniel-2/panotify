@@ -1,0 +1,79 @@
+/* Add these styles to your existing studentdashboard.css file */
+
+/* User avatar styling */
+.user-avatar {
+    -fx-background-color: #7E57C2;
+    -fx-background-radius: 50%;
+    -fx-min-width: 36px;
+    -fx-min-height: 36px;
+    -fx-max-width: 36px;
+    -fx-max-height: 36px;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+}
+
+.user-avatar:hover {
+    -fx-background-color: #6A4CAA;
+}
+
+/* Username button styling to make it look like a label but be clickable */
+.username-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.username-button:hover {
+    -fx-opacity: 0.8;
+}
+
+.username-button:pressed {
+    -fx-opacity: 0.7;
+}
+
+/* Ensure these existing styles work well with our new elements */
+.top-header {
+    -fx-background-color: #3F51B5;
+    -fx-padding: 0 10px;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.primary-button {
+    -fx-background-color: #3F51B5;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #303F9F;
+}
+
+.secondary-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3F51B5;
+    -fx-border-color: #3F51B5;
+    -fx-border-width: 1px;
+    -fx-font-size: 14px;
+    -fx-padding: 7px 15px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: rgba(63, 81, 181, 0.1);
+}

@@ -5,41 +5,55 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+
 import java.io.IOException;
-import java.util.Optional;
 
 public class LandingPageController {
 
-    @FXML
+	@FXML
     private void handleStudentLogin(ActionEvent event) {
         try {
-            // Load the student login page with correct path
             Parent root = FXMLLoader.load(getClass().getResource("/com/panotify/view/StudentLogin.fxml"));
-            navigateToScene(event, root, "Student Login - PaNotify!");
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Student Login - PaNotify!");
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
-            showAlert("Navigation Error", "Could not load student login page: " + e.getMessage());
+            showAlert("Navigation Error", "Could not navigate to student login: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void handleRegister(ActionEvent event) {
+    private void handleTeacherLogin(ActionEvent event) {
+        // Implement teacher login navigation
+        System.out.println("Teacher login requested");
+        // This would typically load a teacher login page
+        // similar to student login but with the appropriate FXML file
+    }
+
+    @FXML
+    private void handleRegistration(ActionEvent event) {
         try {
-            // Load the registration page with correct path
             Parent root = FXMLLoader.load(getClass().getResource("/com/panotify/view/Registration.fxml"));
-            navigateToScene(event, root, "Registration - PaNotify!");
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Student Registration - PaNotify!");
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
-            showAlert("Navigation Error", "Could not load registration page: " + e.getMessage());
+            showAlert("Navigation Error", "Could not navigate to registration: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     @FXML
+<<<<<<< HEAD
     private void handleInstructorLogin(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/panotify/view/InstructorLogin.fxml"));
@@ -48,37 +62,33 @@ public class LandingPageController {
             showAlert("Navigation Error", "Could not load instructor login page: " + e.getMessage());
             e.printStackTrace();
         }
+=======
+    private void handleHelp(MouseEvent event) {
+        showAlert("Help", "PaNotify! Help:\n\n" +
+                "• Student Login: Click 'Student' to access your student account\n" +
+                "• Teacher Login: Click 'Teacher' to access your teacher account\n" +
+                "• Register: Click 'Register now' if you don't have an account\n\n" +
+                "For more assistance, please contact support.");
+>>>>>>> branch 'main' of git@github.com:victorioso-daniel-2/panotify.git
     }
 
     @FXML
-    private void handleHelp(ActionEvent event) {
-        showAlert("Help", "Help documentation will be available soon.");
+    private void handleContact(MouseEvent event) {
+        showAlert("Contact Us", "PaNotify! Support:\n\n" +
+                "Email: support@panotify.com\n" +
+                "Phone: (555) 123-4567\n" +
+                "Hours: Monday-Friday, 9am-5pm");
     }
 
     @FXML
-    private void handleAbout(ActionEvent event) {
+    private void handleAbout(MouseEvent event) {
         showAlert("About PaNotify!", 
                 "PaNotify! is a comprehensive online examination system designed to facilitate secure test-taking, " +
                 "question bank management, automatic grading, and detailed reporting for educational institutions.");
     }
-
-    @FXML
-    private void handleContact(ActionEvent event) {
-        showAlert("Contact Information", "For support or inquiries, please contact support@panotify.com");
-    }
     
-    // Helper method to navigate to a new scene
-    private void navigateToScene(ActionEvent event, Parent root, String title) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle(title);
-        stage.setScene(scene);
-        stage.show();
-    }
-    
-    // Helper method to show alerts
     private void showAlert(String title, String content) {
-        Alert alert = new Alert(AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);

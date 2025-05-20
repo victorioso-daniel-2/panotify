@@ -5,7 +5,18 @@
 	<projects>
 	</projects>
 	<buildSpec>
+<<<<<<< HEAD
 	</buildSpec>
 	<natures>
+=======
+		<buildCommand>
+			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
+>>>>>>> branch 'main' of git@github.com:victorioso-daniel-2/panotify.git
 	</natures>
 </projectDescription>
