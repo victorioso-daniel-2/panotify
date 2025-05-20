@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0"
+		prefWidth="800.0" 
+		stylesheets="@../resources/css/style.css" 
+		xmlns="http://javafx.com/javafx/17" 
+		xmlns:fx="http://javafx.com/fxml/1" 
+		fx:controller="com.panotify.controller.LandingPageController">
+   <top>
+      <HBox 
+      		alignment="CENTER_LEFT" 
+      		prefHeight="70.0" 
+      		spacing="20.0" 
+      		styleClass="top-header" 
+      		BorderPane.alignment="CENTER">
+         <children>
+            <Label text="PaNotify!" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+            <Separator orientation="VERTICAL" />
+            <Label text="Online Examination System" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox 
+      		alignment="CENTER" 
+      		prefHeight="200.0" 
+      		prefWidth="100.0" 
+      		spacing="30.0" 
+      		BorderPane.alignment="CENTER">
+         <children>
+            <Label 
+            	text="Welcome to PaNotify!" 
+            	textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label 
+            	text="Secure and efficient online examination platform" 
+            	textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" spacing="80.0">
+               <children>
+                  <Button 
+                  		mnemonicParsing="false"
+                  		onAction="#handleStudentLogin"
+                  		prefHeight="50.0"
+                  		prefWidth="180.0"
+                  		styleClass="primary-button"
+                  		text="Student">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button 
+                  		mnemonicParsing="false" 
+                  		onAction="#handleInstructorLogin" 
+                  		prefHeight="50.0" 
+                  		prefWidth="180.0" 
+                  		styleClass="primary-button" 
+                  		text="Instructor">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets
+                  	bottom="20.0" 
+                  	left="20.0" 
+                  	right="20.0" 
+                  	top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <Button 
+            	mnemonicParsing="false"
+            	onAction="#handleRegister"
+            	prefHeight="40.0"
+            	prefWidth="200.0"
+            	styleClass="secondary-button"
+            	text="Register New Account">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox
+      		alignment="CENTER" 
+      		prefHeight="60.0" 
+      		spacing="10.0" 
+      		styleClass="footer" 
+      		BorderPane.alignment="CENTER">
+         <children>
+            <Label text="© 2025 PaNotify! All rights reserved." />
+            <Separator orientation="VERTICAL" />
+            <Button 
+            	mnemonicParsing="false" 
+            	onAction="#handleHelp" 
+            	styleClass="link-button" 
+            	text="Help" />
+            <Button 
+            	mnemonicParsing="false" 
+            	onAction="#handleAbout" 
+            	styleClass="link-button" 
+            	text="About" />
+            <Button 
+            	mnemonicParsing="false" 
+            	onAction="#handleContact" 
+            	styleClass="link-button" 
+            	text="Contact" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
