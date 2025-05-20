@@ -1,0 +1,108 @@
+/* Color Palette */
+.root {
+    /* Custom color variables (for reference, not functional in JavaFX) */
+    /* --primary-green: #2E8B57;
+       --accent-blue: #1E3A5F;
+       --background-gray: #F5F5F5;
+       --highlight-yellow: #FFD95A;
+       --text-dark: #1C1C1C;
+    */
+
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-background-color: #F5F5F5; /* background-gray */
+}
+
+/* Card Style */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #e0e0e0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
+    -fx-padding: 15;
+}
+
+/* Buttons */
+.primary-button {
+    -fx-background-color: #2E8B57; /* primary-green */
+    -fx-text-fill: white;
+    -fx-background-radius: 3;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-padding: 8 16;
+}
+
+.primary-button:hover {
+    -fx-background-color: derive(#2E8B57, -10%);
+}
+
+.primary-button:pressed {
+    -fx-background-color: derive(#2E8B57, -20%);
+}
+
+.secondary-button {
+    -fx-background-color: #FFD95A; /* highlight-yellow */
+    -fx-text-fill: #1C1C1C; /* text-dark */
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-padding: 8 16;
+}
+
+.secondary-button:hover {
+    -fx-background-color: derive(#FFD95A, -10%);
+}
+
+.secondary-button:pressed {
+    -fx-background-color: derive(#FFD95A, -20%);
+}
+
+.link-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1E3A5F; /* accent-blue */
+    -fx-cursor: hand;
+    -fx-underline: false;
+}
+
+.link-button:hover {
+    -fx-underline: true;
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #1C1C1C; /* text-dark */
+}
+
+.header-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Separator */
+.separator {
+    -fx-background-color: #e0e0e0;
+}
+
+/* Form Fields */
+.text-field, .password-field {
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-border-color: #e0e0e0;
+    -fx-padding: 8;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #2E8B57; /* primary-green */
+}
+
+/* Header & Footer */
+.top-header {
+    -fx-background-color: #2E8B57; /* primary-green */
+    -fx-padding: 10 20;
+}
+
+.footer {
+    -fx-background-color: #F5F5F5; /* background-gray */
+    -fx-padding: 10 20;
+}

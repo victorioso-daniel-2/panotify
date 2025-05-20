@@ -42,10 +42,9 @@ public class LandingPageController {
     @FXML
     private void handleInstructorLogin(ActionEvent event) {
         try {
-            // In a real app, load the instructor login page
-            // For now, we'll show an alert as this page may not exist yet
-            showAlert("Instructor Login", "Instructor login functionality will be implemented soon.");
-        } catch (Exception e) {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/panotify/view/InstructorLogin.fxml"));
+            navigateToScene(event, root, "Instructor Login - PaNotify!");
+        } catch (IOException e) {
             showAlert("Navigation Error", "Could not load instructor login page: " + e.getMessage());
             e.printStackTrace();
         }
