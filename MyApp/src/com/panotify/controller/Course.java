@@ -6,7 +6,7 @@ public class Course {
     private final IntegerProperty courseId;
     private final StringProperty courseName;
     private final StringProperty courseCode;
-
+    
     public Course(int id, String name, String code) {
         this.courseId = new SimpleIntegerProperty(id);
         this.courseName = new SimpleStringProperty(name);
