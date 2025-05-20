@@ -1,104 +1,70 @@
-/* Color Palette Variables */
-* {
-    -primary-green: #2E8B57; /* Sea Green */
-    -accent-blue: #1E3A5F; /* Navy Blue */
-    -background-gray: #F5F5F5; /* Soft Gray */
-    -highlight-yellow: #FFD95A; /* Button Highlight */
-    -text-dark: #1C1C1C; /* Text Color */
-}
-
-/* Base styles */
+/* Base Styles */
 .root {
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-background-color: -background-gray;
+  -fx-font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-/* Card styles */
-.card {
-    -fx-background-color: white;
-    -fx-background-radius: 5px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
-    -fx-border-radius: 5px;
-    -fx-border-color: #e0e0e0;
+.account-text {
+  -fx-font-size: 16px;
+  -fx-text-fill: white;
+  -fx-translate-y: 150px; 
+  -fx-translate-x: 100px; 
 }
 
-/* Button styles */
-.primary-button {
-    -fx-background-color: -primary-green;
-    -fx-text-fill: white;
-    -fx-background-radius: 3px;
-    -fx-cursor: hand;
+.footer-text {
+  -fx-font-size: 16px;
+  -fx-text-fill: black;
+  -fx-cursor: hand;
+  
 }
 
-.primary-button:hover {
-    -fx-background-color: derive(-primary-green, -10%);
+/* Button Styles */
+.student-button {
+  -fx-background-color: #2ecc71;
+  -fx-text-fill: white;
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+  -fx-padding: 10px 50px;
+  -fx-background-radius: 25px;
+  -fx-cursor: hand;
+  -fx-translate-y: 150px; /* Move down by 30 pixels */
 }
 
-.primary-button:pressed {
-    -fx-background-color: derive(-primary-green, -20%);
+.student-button:hover {
+  -fx-background-color: #27ae60;
 }
 
-.secondary-button {
-    -fx-background-color: -highlight-yellow;
-    -fx-text-fill: -text-dark;
-    -fx-border-radius: 3px;
-    -fx-background-radius: 3px;
-    -fx-cursor: hand;
+.teacher-button {
+  -fx-background-color: #f1c40f;
+  -fx-text-fill: white;
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+  -fx-padding: 10px 50px;
+  -fx-background-radius: 25px;
+  -fx-cursor: hand;
+  -fx-translate-y: 150px; /* Move down by 30 pixels */
 }
 
-.secondary-button:hover {
-    -fx-background-color: derive(-highlight-yellow, -10%);
+.teacher-button:hover {
+  -fx-background-color: #f39c12;
 }
 
-.secondary-button:pressed {
-    -fx-background-color: derive(-highlight-yellow, -20%);
+/* Account section styling */
+.account-section {
+  -fx-translate-y: 100px; /* Move down by 60 pixels */
 }
 
-.link-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: -accent-blue;
-    -fx-cursor: hand;
-    -fx-underline: false;
+.register-button {
+  -fx-background-color: rgba(200, 200, 200, 0.8);
+  -fx-text-fill: #333;
+  -fx-font-size: 16px;
+  -fx-font-weight: normal;
+  -fx-padding: 8px 20px;
+  -fx-background-radius: 25px;
+  -fx-cursor: hand;
+  -fx-translate-y: 150px; 
+  -fx-translate-x: 110px; 
 }
 
-.link-button:hover {
-    -fx-underline: true;
-}
-
-/* Label styles */
-.label {
-    -fx-text-fill: -text-dark;
-}
-
-/* Header styles */
-.header-label {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-}
-
-/* Separator styles */
-.separator {
-    -fx-background-color: #e0e0e0;
-}
-
-/* Form styles */
-.text-field, .password-field {
-    -fx-background-radius: 3px;
-    -fx-border-radius: 3px;
-    -fx-border-color: #e0e0e0;
-    -fx-padding: 8px;
-}
-
-.text-field:focused, .password-field:focused {
-    -fx-border-color: -primary-green;
-}
-
-/* Header background */
-.top-header {
-    -fx-background-color: -primary-green;
-}
-
-/* Footer background */
-.footer {
-    -fx-background-color: -background-gray;
+.register-button:hover {
+  -fx-background-color: rgba(200, 200, 200, 1.0);
 }

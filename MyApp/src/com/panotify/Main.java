@@ -6,30 +6,30 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
-        try {
-            // Use the correct path to load FXML file
-            Parent root = FXMLLoader.load(getClass().getResource("/com/panotify/view/LandingPage.fxml"));
-            Scene scene = new Scene(root);
-            
-            // Set application title and icon
-            primaryStage.setTitle("PaNotify! - Online Examination System");
-            // Uncomment and set path to your icon if available
-            // primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/com/panotify/resources/images/icon.png")));
-            
-            primaryStage.setScene(scene);
-            primaryStage.setMinWidth(800);
-            primaryStage.setMinHeight(600);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.err.println("Error loading FXML file: " + e.getMessage());
-            e.printStackTrace();
-        }
+    public void start(Stage primaryStage) throws Exception {
+        // Load the FXML file
+        Parent root = FXMLLoader.load(getClass().getResource("/com/panotify/view/LandingPage.fxml"));
+        
+        // Create the scene
+        Scene scene = new Scene(root);
+        
+        // Set up the stage
+        primaryStage.setTitle("PaNotify! - Online Examination System");
+        primaryStage.setScene(scene);
+        
+        // Optional: Set application icon
+        // primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/com/panotify/resources/images/app_icon.png")));
+        
+        // Set stage properties
+        primaryStage.setResizable(false);
+        primaryStage.centerOnScreen();
+        
+        // Show the stage
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

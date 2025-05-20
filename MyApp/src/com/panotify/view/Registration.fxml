@@ -15,7 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../resources/css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.panotify.controller.RegistrationController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" 
+			stylesheets="@../resources/css/style.css" 
+			xmlns="http://javafx.com/javafx/17" 
+			xmlns:fx="http://javafx.com/fxml/1" 
+			fx:controller="com.panotify.controller.RegistrationController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="20.0" styleClass="top-header" BorderPane.alignment="CENTER">
          <children>
