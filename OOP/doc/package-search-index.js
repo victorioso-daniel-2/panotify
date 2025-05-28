@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"MyApp","l":"com.panotify"},{"m":"MyApp","l":"com.panotify.model"},{"m":"MyApp","l":"com.panotify.service"},{"m":"MyApp","l":"com.panotify.util"}];updateSearchResults();

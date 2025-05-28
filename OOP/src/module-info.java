@@ -1,6 +1,12 @@
+/**
+ * The main module for the PaNotify application.
+ * <p>
+ * This module defines the dependencies and exported packages for the secure online examination platform.
+ * It requires JavaFX for the user interface and java.sql for database operations.
+ * </p>
+ */
 module MyApp {
     requires javafx.controls;
-    requires javafx.fxml;
     requires java.sql;
     
     // Open packages to JavaFX
@@ -10,4 +16,6 @@ module MyApp {
     // Export packages that need to be accessible
     exports com.panotify;
     exports com.panotify.model;
+    exports com.panotify.service;
+    exports com.panotify.util;
 }
