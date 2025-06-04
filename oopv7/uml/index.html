@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaNotify - UML Class Diagram Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>PaNotify</h1>
+            <p class="subtitle">UML Class Diagram Documentation</p>
+        </div>
+    </header>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#overview" class="nav-link">Overview</a>
+            <a href="#model-classes" class="nav-link">Model Classes</a>
+            <a href="#service-classes" class="nav-link">Service Classes</a>
+            <a href="#ui-classes" class="nav-link">UI Classes</a>
+            <a href="#relationships" class="nav-link">Relationships</a>
+            <a href="#interactive-diagram" class="nav-link">Interactive Diagram</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="overview" class="section">
+            <div class="section-content">
+                <h2>Overview</h2>
+                <p>This documentation provides a detailed explanation of the PaNotify application's class structure through UML (Unified Modeling Language) diagrams. The diagrams visualize the relationships between classes, their attributes, methods, and how they collaborate to form the complete system.</p>
+                
+                <div class="diagram-container">
+                    <h3>Complete Class Diagram</h3>
+                    <div class="uml-diagram" id="main-diagram">
+                        <!-- SVG diagram will be inserted here by JavaScript -->
+                    </div>
+                    <div class="diagram-controls">
+                        <button id="zoom-in" class="control-button"><i class="fas fa-search-plus"></i> Zoom In</button>
+                        <button id="zoom-out" class="control-button"><i class="fas fa-search-minus"></i> Zoom Out</button>
+                        <button id="reset-view" class="control-button"><i class="fas fa-sync"></i> Reset View</button>
+                    </div>
+                </div>
+                
+                <div class="legend">
+                    <h3>Diagram Legend</h3>
+                    <div class="legend-item">
+                        <div class="legend-color inheritance-line"></div>
+                        <div class="legend-label">Inheritance - "is a" relationship (e.g., Student is a User)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color association-line"></div>
+                        <div class="legend-label">Association - "has a" relationship (e.g., Course has Exams)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color dependency-line"></div>
+                        <div class="legend-label">Dependency - "uses" relationship (e.g., Service uses Model)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color composition-line"></div>
+                        <div class="legend-label">Composition - "owns" relationship (strong containment)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="model-classes" class="section">
+            <div class="section-content">
+                <h2>Model Classes</h2>
+                <p>Model classes represent the core data structures and business objects of the PaNotify application. They encapsulate data and provide methods to manipulate that data.</p>
+                
+                <div class="class-group">
+                    <h3>User Hierarchy</h3>
+                    <p>The User class serves as the base class for both Student and Instructor classes, providing common user functionality.</p>
+                    
+                    <div class="class-card">
+                        <h4>User</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- userId: int</li>
+                                    <li>- firstName: String</li>
+                                    <li>- lastName: String</li>
+                                    <li>- username: String</li>
+                                    <li>- email: String</li>
+                                    <li>- accountType: String</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ getFullName(): String</li>
+                                    <li>+ setPassword(String): void</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subclass-container">
+                        <div class="class-card">
+                            <h4>Student</h4>
+                            <div class="class-details">
+                                <div class="attributes">
+                                    <h5>Attributes</h5>
+                                    <ul>
+                                        <li>- enrolledCourses: List&lt;CourseInfo&gt;</li>
+                                        <li>- examResults: List&lt;ExamResult&gt;</li>
+                                    </ul>
+                                </div>
+                                <div class="methods">
+                                    <h5>Methods</h5>
+                                    <ul>
+                                        <li>+ addEnrolledCourse(CourseInfo): void</li>
+                                        <li>+ getStudentId(): String</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="class-card">
+                            <h4>Instructor</h4>
+                            <div class="class-details">
+                                <div class="attributes">
+                                    <h5>Attributes</h5>
+                                    <ul>
+                                        <li>- department: String</li>
+                                        <li>- courses: List&lt;Course&gt;</li>
+                                    </ul>
+                                </div>
+                                <div class="methods">
+                                    <h5>Methods</h5>
+                                    <ul>
+                                        <li>+ addCourse(Course): void</li>
+                                        <li>+ getInstructorId(): String</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-group">
+                    <h3>Course and Exam Classes</h3>
+                    <p>These classes represent the educational content and assessment aspects of the application.</p>
+                    
+                    <div class="class-card">
+                        <h4>Course</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- courseId: int</li>
+                                    <li>- courseName: String</li>
+                                    <li>- courseCode: String</li>
+                                    <li>- instructorId: int</li>
+                                    <li>- instructorName: String</li>
+                                    <li>- exams: List&lt;Exam&gt;</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ addExam(Exam): void</li>
+                                    <li>+ addEnrollment(CourseEnrollment): void</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="class-card">
+                        <h4>Exam</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- examId: int</li>
+                                    <li>- title: String</li>
+                                    <li>- courseId: int</li>
+                                    <li>- instructorId: int</li>
+                                    <li>- deadline: LocalDateTime</li>
+                                    <li>- questions: List&lt;Question&gt;</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ isPublished(): boolean</li>
+                                    <li>+ getDurationMinutes(): int</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="class-card">
+                        <h4>Question</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- questionId: int</li>
+                                    <li>- examId: int</li>
+                                    <li>- questionText: String</li>
+                                    <li>- options: String</li>
+                                    <li>- correctOption: int</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ getCorrectAnswer(): String</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-group">
+                    <h3>Result Classes</h3>
+                    <p>These classes handle exam results, student answers, and reporting functionality.</p>
+                    
+                    <div class="class-card">
+                        <h4>StudentAnswer</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- studentId: int</li>
+                                    <li>- questionId: int</li>
+                                    <li>- answerText: String</li>
+                                    <li>- isCorrect: boolean</li>
+                                    <li>- submittedAt: LocalDateTime</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ isCorrect(): boolean</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="class-card">
+                        <h4>ExamResult</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- resultId: int</li>
+                                    <li>- examId: int</li>
+                                    <li>- studentId: int</li>
+                                    <li>- totalScore: int</li>
+                                    <li>- maxScore: int</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ getScorePercentage(): double</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="service-classes" class="section">
+            <div class="section-content">
+                <h2>Service Classes</h2>
+                <p>Service classes implement the business logic of the application, interacting with the database and providing functionality to the UI components.</p>
+                
+                <div class="class-group">
+                    <div class="class-card">
+                        <h4>ExamService</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- connection: Connection</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ createExam(Exam): boolean</li>
+                                    <li>+ addQuestion(Question): int</li>
+                                    <li>+ getExamQuestions(int): List&lt;Question&gt;</li>
+                                    <li>+ submitAnswer(StudentAnswer): boolean</li>
+                                    <li>+ gradeExam(int, int): boolean</li>
+                                    <li>+ getExamById(int): Exam</li>
+                                    <li>+ getExamsForStudent(int): List&lt;Exam&gt;</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="class-card">
+                        <h4>CourseService</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- connection: Connection</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ createCourse(Course): boolean</li>
+                                    <li>+ getCourseById(int): Course</li>
+                                    <li>+ getInstructorCourses(int): List&lt;Course&gt;</li>
+                                    <li>+ getEnrolledCourses(int): List&lt;Course&gt;</li>
+                                    <li>+ enrollStudent(int, int): boolean</li>
+                                    <li>+ getCourseStudents(int): List&lt;Student&gt;</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="class-card">
+                        <h4>UserService</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- connection: Connection</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ createUser(User): boolean</li>
+                                    <li>+ getUserById(int): User</li>
+                                    <li>+ updateUser(User): boolean</li>
+                                    <li>+ changePassword(int, String): boolean</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="class-card">
+                        <h4>AuthenticationService</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- connection: Connection</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ login(String, String): User</li>
+                                    <li>+ validateCredentials(String, String): boolean</li>
+                                    <li>+ registerUser(User): boolean</li>
+                                    <li>+ isUsernameAvailable(String): boolean</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="class-card">
+                        <h4>ReportService</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- connection: Connection</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ getStudentReport(int, int): Report</li>
+                                    <li>+ getCourseReport(int): List&lt;ExamResult&gt;</li>
+                                    <li>+ getClassPerformance(int): Map&lt;String, Double&gt;</li>
+                                    <li>+ getTopPerformers(int): List&lt;StudentReport&gt;</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ui-classes" class="section">
+            <div class="section-content">
+                <h2>UI Classes</h2>
+                <p>The user interface classes provide the visual components and interaction mechanisms for users to interact with the system.</p>
+                
+                <div class="class-group">
+                    <div class="class-card">
+                        <h4>LoginView</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- authService: AuthenticationService</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ show(String): void</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="class-card">
+                        <h4>StudentDashboard</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- student: Student</li>
+                                    <li>- tabs: Map&lt;String, StudentTab&gt;</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ navigateToTab(String): void</li>
+                                    <li>+ initializeTabs(): void</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="class-card">
+                        <h4>InstructorDashboard</h4>
+                        <div class="class-details">
+                            <div class="attributes">
+                                <h5>Attributes</h5>
+                                <ul>
+                                    <li>- instructor: Instructor</li>
+                                    <li>- tabs: Map&lt;String, InstructorTab&gt;</li>
+                                </ul>
+                            </div>
+                            <div class="methods">
+                                <h5>Methods</h5>
+                                <ul>
+                                    <li>+ navigateToTab(String): void</li>
+                                    <li>+ initializeTabs(): void</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Tab Interfaces and Implementations</h3>
+                    <div class="interface-card">
+                        <h4>StudentTab</h4>
+                        <div class="interface-methods">
+                            <h5>Methods</h5>
+                            <ul>
+                                <li>+ getContent(): VBox</li>
+                                <li>+ onNavigatedTo(): void</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="implementations">
+                        <div class="implementation-card">
+                            <h4>CoursesTab</h4>
+                        </div>
+                        <div class="implementation-card">
+                            <h4>ExamsTab</h4>
+                        </div>
+                        <div class="implementation-card">
+                            <h4>ResultsTab</h4>
+                        </div>
+                        <div class="implementation-card">
+                            <h4>ProfileTab</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="interface-card">
+                        <h4>InstructorTab</h4>
+                        <div class="interface-methods">
+                            <h5>Methods</h5>
+                            <ul>
+                                <li>+ getContent(): VBox</li>
+                                <li>+ onNavigatedTo(): void</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="relationships" class="section">
+            <div class="section-content">
+                <h2>Class Relationships</h2>
+                <p>This section explains the key relationships between classes in the PaNotify system.</p>
+                
+                <div class="relationship-group">
+                    <h3>Inheritance Relationships</h3>
+                    <ul>
+                        <li><strong>User → Student</strong>: Student is a specialized type of User with student-specific behaviors</li>
+                        <li><strong>User → Instructor</strong>: Instructor is a specialized type of User with instructor-specific behaviors</li>
+                    </ul>
+                </div>
+                
+                <div class="relationship-group">
+                    <h3>Association Relationships</h3>
+                    <ul>
+                        <li><strong>Course ↔ Exam</strong>: A Course contains multiple Exams; an Exam belongs to one Course</li>
+                        <li><strong>Exam ↔ Question</strong>: An Exam contains multiple Questions; a Question belongs to one Exam</li>
+                        <li><strong>Student ↔ ExamResult</strong>: A Student has multiple ExamResults; an ExamResult belongs to one Student</li>
+                        <li><strong>Question ↔ StudentAnswer</strong>: A Question has multiple StudentAnswers; a StudentAnswer refers to one Question</li>
+                        <li><strong>Student ↔ Course</strong>: A Student enrolls in multiple Courses; a Course has multiple Students</li>
+                        <li><strong>Instructor ↔ Course</strong>: An Instructor teaches multiple Courses; a Course has one Instructor</li>
+                    </ul>
+                </div>
+                
+                <div class="relationship-group">
+                    <h3>Dependency Relationships</h3>
+                    <ul>
+                        <li><strong>Service Classes → Model Classes</strong>: Service classes depend on model classes to perform operations</li>
+                        <li><strong>UI Classes → Service Classes</strong>: UI classes depend on service classes to access functionality</li>
+                    </ul>
+                </div>
+                
+                <div class="relationship-group">
+                    <h3>Implementation Relationships</h3>
+                    <ul>
+                        <li><strong>StudentTab ← CoursesTab, ExamsTab, etc.</strong>: These classes implement the StudentTab interface</li>
+                        <li><strong>InstructorTab ← CourseManagementTab, ExamCreationTab, etc.</strong>: These classes implement the InstructorTab interface</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="interactive-diagram" class="section">
+            <div class="section-content">
+                <h2>Interactive Class Diagram</h2>
+                <p>Explore the relationships between classes by interacting with the diagram below. Click on a class to highlight its relationships with other classes.</p>
+                
+                <div class="interactive-container">
+                    <div id="interactive-uml" class="interactive-diagram">
+                        <!-- SVG will be inserted here by JavaScript -->
+                    </div>
+                    <div class="diagram-controls">
+                        <div class="filter-controls">
+                            <label>
+                                <input type="checkbox" class="filter-checkbox" value="model" checked> 
+                                Show Model Classes
+                            </label>
+                            <label>
+                                <input type="checkbox" class="filter-checkbox" value="service" checked> 
+                                Show Service Classes
+                            </label>
+                            <label>
+                                <input type="checkbox" class="filter-checkbox" value="ui" checked> 
+                                Show UI Classes
+                            </label>
+                        </div>
+                        <div class="relationship-controls">
+                            <label>
+                                <input type="checkbox" class="relationship-checkbox" value="inheritance" checked> 
+                                Show Inheritance
+                            </label>
+                            <label>
+                                <input type="checkbox" class="relationship-checkbox" value="association" checked> 
+                                Show Associations
+                            </label>
+                            <label>
+                                <input type="checkbox" class="relationship-checkbox" value="dependency" checked> 
+                                Show Dependencies
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 PaNotify | Educational Application for Managing Exams</p>
+            <p>This documentation describes the UML class diagram of the PaNotify project.</p>
+        </div>
+    </footer>
+
+    <script src="uml-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

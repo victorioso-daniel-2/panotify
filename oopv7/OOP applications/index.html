@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaNotify - OOP Principles Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>PaNotify</h1>
+            <p class="subtitle">Object-Oriented Programming Principles &amp; Properties</p>
+        </div>
+    </header>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#introduction" class="nav-link">Introduction</a>
+            <a href="#encapsulation" class="nav-link">Encapsulation</a>
+            <a href="#inheritance" class="nav-link">Inheritance</a>
+            <a href="#polymorphism" class="nav-link">Polymorphism</a>
+            <a href="#abstraction" class="nav-link">Abstraction</a>
+            <a href="#composition" class="nav-link">Composition</a>
+            <a href="#design-patterns" class="nav-link">Design Patterns</a>
+            <a href="#solid" class="nav-link">SOLID Principles</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="introduction" class="section">
+            <div class="section-content">
+                <h2>Introduction to PaNotify</h2>
+                <p>PaNotify is an educational application designed for managing exams, courses, and student progress. The system enables instructors to create and manage courses, design exams, and review student performance, while students can take exams and track their academic progress.</p>
+                
+                <p>This documentation explains how Object-Oriented Programming (OOP) principles and properties are applied throughout the PaNotify project. The codebase exemplifies a well-structured object-oriented design that leverages key OOP concepts to create a maintainable, extensible application architecture.</p>
+                
+                <div class="uml-preview">
+                    <h3>System Architecture</h3>
+                    <p>The UML class diagram below provides an overview of the PaNotify system architecture:</p>
+                    <img src="../panotify_uml.svg" alt="PaNotify UML Class Diagram" class="uml-diagram">
+                    <p class="caption">PaNotify UML Class Diagram - Overview of the system's main components</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="encapsulation" class="section">
+            <div class="section-content">
+                <h2>Encapsulation</h2>
+                <p>Encapsulation is the bundling of data with the methods that operate on that data, restricting direct access to some of an object's components. PaNotify implements encapsulation through:</p>
+                
+                <div class="example-container">
+                    <h3>Private Fields with Public Accessors</h3>
+                    <p>All model classes in PaNotify use private fields with public getter and setter methods to control access to data:</p>
+                    <pre class="code-example">
+public class User {
+    private int userId;
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String email;
+    private String password;
+    private String accountType;
+    
+    // Public getters and setters
+    public int getUserId() {
+        return userId;
+    }
+    
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+    
+    public String getFirstName() {
+        return firstName;
+    }
+    
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    // ...other getters and setters
+}</pre>
+                </div>
+                
+                <div class="example-container">
+                    <h3>Data Validation in Setters</h3>
+                    <p>Some setters in the codebase implement validation logic to ensure data integrity:</p>
+                    <pre class="code-example">
+public void setPassword(String password) {
+    // Password validation
+    if (password == null || password.length() < 6) {
+        throw new IllegalArgumentException("Password must be at least 6 characters");
+    }
+    this.password = password;
+}</pre>
+                </div>
+                
+                <div class="benefits">
+                    <h3>Benefits in PaNotify:</h3>
+                    <ul>
+                        <li><strong>Data Protection</strong>: Direct access to fields like user passwords or exam questions is restricted</li>
+                        <li><strong>API Stability</strong>: Implementation details can change without affecting the public interface</li>
+                        <li><strong>Validation Control</strong>: Data validation occurs in a single place, ensuring consistency</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="inheritance" class="section">
+            <div class="section-content">
+                <h2>Inheritance</h2>
+                <p>Inheritance allows a class to inherit properties and methods from another class. PaNotify uses inheritance to establish "is-a" relationships and promote code reuse.</p>
+                
+                <div class="example-container">
+                    <h3>User Hierarchy</h3>
+                    <p>The <code>User</code> class serves as a base class with common attributes and behaviors, while <code>Student</code> and <code>Instructor</code> classes extend it with specialized functionality:</p>
+                    <pre class="code-example">
+public class User {
+    private int userId;
+    private String firstName;
+    private String lastName;
+    private String username;
+    // Common user attributes and methods
+}
+
+public class Student extends User {
+    private List&lt;CourseInfo&gt; enrolledCourses;
+    private List&lt;ExamResult&gt; examResults;
+    
+    // Student-specific methods
+    public void addEnrolledCourse(CourseInfo course) {
+        if (!enrolledCourses.contains(course)) {
+            enrolledCourses.add(course);
+        }
+    }
+}
+
+public class Instructor extends User {
+    private List&lt;Course&gt; courses;
+    
+    // Instructor-specific methods
+    public void addCourse(Course course) {
+        courses.add(course);
+    }
+}</pre>
+                </div>
+                
+                <div class="example-container">
+                    <h3>UI Component Hierarchy</h3>
+                    <p>The UI layer uses inheritance for common tab functionality, with the <code>InstructorTab</code> and <code>StudentTab</code> interfaces defining common behavior for UI tabs:</p>
+                    <pre class="code-example">
+public interface StudentTab {
+    VBox getContent();
+    void onNavigatedTo();
+}
+
+// Implementation classes
+public class CoursesTab implements StudentTab {
+    // Implementation of StudentTab methods
+    // plus specific functionality for courses
+}
+
+public class ExamsTab implements StudentTab {
+    // Implementation of StudentTab methods
+    // plus specific functionality for exams
+}</pre>
+                </div>
+                
+                <div class="benefits">
+                    <h3>Benefits in PaNotify:</h3>
+                    <ul>
+                        <li><strong>Code Reuse</strong>: Common user functionality is defined once in the base class</li>
+                        <li><strong>Polymorphic Behavior</strong>: Service classes can process any User object</li>
+                        <li><strong>Clean Type Hierarchy</strong>: Logical "is-a" relationships make the codebase easier to understand</li>
+                        <li><strong>Consistent Interfaces</strong>: UI tabs follow a consistent pattern while allowing specialized behavior</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="polymorphism" class="section">
+            <div class="section-content">
+                <h2>Polymorphism</h2>
+                <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass. PaNotify uses polymorphism to create flexible, extensible code.</p>
+                
+                <div class="example-container">
+                    <h3>Polymorphism</h3>
+                    <p>The <code>AuthenticationService</code> handles both <code>Student</code> and <code>Instructor</code> logins through a single interface by working with the <code>User</code> type:</p>
+                    <pre class="code-example">
+public class AuthenticationService {
+    // Returns the appropriate subclass (Student or Instructor)
+    // but as a User reference
+    public User login(String username, String password) {
+        // Authentication logic
+        User user = getUserByUsername(username);
+        
+        if (user != null && validateCredentials(username, password)) {
+            // Return the appropriate user type based on accountType
+            if ("student".equals(user.getAccountType())) {
+                return loadStudentDetails((Student)user);
+            } else if ("instructor".equals(user.getAccountType())) {
+                return loadInstructorDetails((Instructor)user);
+            }
+        }
+        return null;
+    }
+}</pre>
+                </div>
+                
+                <div class="example-container">
+                    <h3>UI Component Management</h3>
+                    <p>Dashboard classes use polymorphism to handle different types of tabs through a common interface:</p>
+                    <pre class="code-example">
+public class StudentDashboard {
+    private Map&lt;String, StudentTab&gt; tabs = new HashMap&lt;&gt;();
+    
+    // Initialize tabs of different concrete types
+    public void initializeTabs() {
+        tabs.put("courses", new CoursesTab(student, courseService, this));
+        tabs.put("exams", new ExamsTab(student, courseService, examService, this));
+        tabs.put("results", new ResultsTab(student, examService, this));
+        tabs.put("profile", new ProfileTab(student, userService, this));
+    }
+    
+    // Navigate to any tab through the common interface
+    public void navigateToTab(String tabName) {
+        StudentTab tab = tabs.get(tabName);
+        if (tab != null) {
+            tab.onNavigatedTo();
+            contentStack.getChildren().clear();
+            contentStack.getChildren().add(tab.getContent());
+        }
+    }
+}</pre>
+                </div>
+                
+                <div class="benefits">
+                    <h3>Benefits in PaNotify:</h3>
+                    <ul>
+                        <li><strong>Runtime Flexibility</strong>: Code can work with different object types without knowing concrete implementations</li>
+                        <li><strong>Simplified Interfaces</strong>: Consistent methods across different object types</li>
+                        <li><strong>Extensibility</strong>: New implementations can be added without changing existing code</li>
+                        <li><strong>Reduced Conditional Logic</strong>: Less need for type checking and conditional branching</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="abstraction" class="section">
+            <div class="section-content">
+                <h2>Abstraction</h2>
+                <p>Abstraction is the concept of hiding complex implementation details and showing only the necessary features. PaNotify applies abstraction through interfaces, well-defined service classes, and clean separation of concerns.</p>
+                
+                <div class="example-container">
+                    <h3>Abstraction</h3>
+                    <p>Service classes abstract database operations and business logic from the UI layer:</p>
+                    <pre class="code-example">
+public class ExamService {
+    private Connection connection;
+    
+    // Simple public interface that hides complex database operations
+    public boolean gradeExam(int studentId, int examId) throws SQLException {
+        // Complex implementation involving multiple tables and calculations
+        List&lt;Question&gt; questions = getExamQuestions(examId);
+        int totalPoints = 0;
+        int earnedPoints = 0;
+        
+        // Process each question...
+        // Check student answers...
+        // Calculate scores...
+        
+        // Finally create/update the result
+        return createExamResult(studentId, examId, earnedPoints, totalPoints);
+    }
+    
+    // Private helper methods hide implementation details
+    private boolean createExamResult(int studentId, int examId, 
+                                     int earnedPoints, int totalPoints) throws SQLException {
+        // Database operations to store the result
+        // ...
+    }
+}</pre>
+                </div>
+                
+                <div class="example-container">
+                    <h3>UI Abstraction with Interfaces</h3>
+                    <p>Interfaces like <code>StudentTab</code> and <code>InstructorTab</code> abstract the implementation details of various UI components:</p>
+                    <pre class="code-example">
+public interface InstructorTab {
+    // Abstract method that each tab must implement
+    VBox getContent();
+    
+    // Navigation event handler
+    void onNavigatedTo();
+}
+
+// Different implementations can use different strategies internally
+public class CoursesTab implements InstructorTab {
+    @Override
+    public VBox getContent() {
+        // Implementation details hidden from clients
+    }
+    
+    @Override
+    public void onNavigatedTo() {
+        // Implementation details hidden from clients
+    }
+}</pre>
+                </div>
+                
+                <div class="benefits">
+                    <h3>Benefits in PaNotify:</h3>
+                    <ul>
+                        <li><strong>Reduced Complexity</strong>: UI components interact with simple service interfaces rather than complex database operations</li>
+                        <li><strong>Separation of Concerns</strong>: Clear boundaries between data access, business logic, and presentation</li>
+                        <li><strong>Maintainability</strong>: Implementation details can change without affecting other parts of the system</li>
+                        <li><strong>Testability</strong>: Components with clear interfaces are easier to test in isolation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="composition" class="section">
+            <div class="section-content">
+                <h2>Composition</h2>
+                <p>Composition is a design principle that favors "has-a" relationships over inheritance. PaNotify uses composition to create flexible, modular components.</p>
+                
+                <div class="example-container">
+                    <h3>Course Composition</h3>
+                    <p>The <code>Course</code> class uses composition to manage its relationship with exams and enrollments:</p>
+                    <pre class="code-example">
+public class Course {
+    private int courseId;
+    private String courseName;
+    private String courseCode;
+    private int instructorId;
+    
+    // Composition: Course "has" exams and enrollments
+    private List&lt;Exam&gt; exams;
+    private List&lt;CourseEnrollment&gt; enrollments;
+    
+    public Course() {
+        this.exams = new ArrayList&lt;&gt;();
+        this.enrollments = new ArrayList&lt;&gt;();
+    }
+    
+    public void addExam(Exam exam) {
+        exams.add(exam);
+    }
+    
+    public void addEnrollment(CourseEnrollment enrollment) {
+        enrollments.add(enrollment);
+    }
+}</pre>
+                </div>
+                
+                <div class="example-container">
+                    <h3>Dashboard UI Composition</h3>
+                    <p>The dashboard classes use composition to assemble various UI components:</p>
+                    <pre class="code-example">
+public class StudentDashboard {
+    private Student student;
+    private UserService userService;
+    private CourseService courseService;
+    private ExamService examService;
+    
+    // Composition: Dashboard "has" different tab components
+    private Map&lt;String, StudentTab&gt; tabs;
+    
+    // Composition: Dashboard "has" UI components
+    private VBox sidebar;
+    private StackPane contentStack;
+    
+    public StudentDashboard(Stage primaryStage, Student student, 
+                           UserService userService, CourseService courseService, 
+                           ExamService examService) {
+        this.student = student;
+        this.userService = userService;
+        this.courseService = courseService;
+        this.examService = examService;
+        
+        // Initialize UI components through composition
+        this.tabs = new HashMap&lt;&gt;();
+        this.sidebar = createSidebar();
+        this.contentStack = new StackPane();
+        
+        // Initialize tab components
+        initializeTabs();
+    }
+}</pre>
+                </div>
+                
+                <div class="benefits">
+                    <h3>Benefits in PaNotify:</h3>
+                    <ul>
+                        <li><strong>Flexibility</strong>: Components can be composed and reconfigured at runtime</li>
+                        <li><strong>Loose Coupling</strong>: Components interact through well-defined interfaces rather than inheritance</li>
+                        <li><strong>Reusability</strong>: Components can be used in different contexts</li>
+                        <li><strong>Testability</strong>: Components can be tested in isolation or with mock dependencies</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="design-patterns" class="section">
+            <div class="section-content">
+                <h2>Design Patterns</h2>
+                <p>PaNotify implements several design patterns to solve common software design challenges:</p>
+                
+                <div class="example-container">
+                    <h3>Model-View-Controller (MVC)</h3>
+                    <p>The application follows an MVC-like architecture:</p>
+                    <ul>
+                        <li><strong>Model</strong>: Classes in the <code>model</code> package (User, Student, Course, Exam)</li>
+                        <li><strong>View</strong>: UI classes in the <code>ui</code> package (StudentDashboard, ExamsTab)</li>
+                        <li><strong>Controller</strong>: Service classes in the <code>service</code> package (ExamService, CourseService)</li>
+                    </ul>
+                    <p>This separation of concerns makes the codebase more maintainable and testable.</p>
+                </div>
+                
+                <div class="example-container">
+                    <h3>Singleton Pattern</h3>
+                    <p>The database connection is managed through a singleton pattern in <code>DatabaseUtil</code> to ensure only one connection pool exists:</p>
+                    <pre class="code-example">
+public class DatabaseUtil {
+    private static Connection connection;
+    
+    private DatabaseUtil() {
+        // Private constructor prevents direct instantiation
+    }
+    
+    public static Connection getConnection() throws SQLException {
+        if (connection == null || connection.isClosed()) {
+            // Initialize the connection
+            // ...
+        }
+        return connection;
+    }
+}</pre>
+                </div>
+                
+                <div class="example-container">
+                    <h3>Factory Method Pattern</h3>
+                    <p>The <code>AuthenticationService</code> implements a factory-like pattern to create the appropriate user type:</p>
+                    <pre class="code-example">
+public class AuthenticationService {
+    public User login(String username, String password) {
+        // Authentication logic
+        
+        // Factory method pattern: creates the appropriate user subclass
+        // based on the account type
+        if ("student".equals(accountType)) {
+            return createStudentUser(userId, userData);
+        } else if ("instructor".equals(accountType)) {
+            return createInstructorUser(userId, userData);
+        }
+        
+        return null;
+    }
+    
+    private Student createStudentUser(int userId, ResultSet userData) {
+        // Create and initialize a Student object
+    }
+    
+    private Instructor createInstructorUser(int userId, ResultSet userData) {
+        // Create and initialize an Instructor object
+    }
+}</pre>
+                </div>
+                
+                <div class="example-container">
+                    <h3>Observer Pattern</h3>
+                    <p>The UI components implement an observer-like pattern through callbacks and event listeners:</p>
+                    <pre class="code-example">
+// LoginView defines a callback interface (Observer)
+public class LoginView {
+    public interface LoginCallback {
+        void onLoginSuccess(User user);
+    }
+    
+    private LoginCallback callback;
+    
+    // Callback is notified when login is successful
+    private void handleLoginSuccess(User user) {
+        if (callback != null) {
+            callback.onLoginSuccess(user);
+        }
+    }
+}
+
+// Main class implements the callback (Observer)
+public class Main implements LoginView.LoginCallback {
+    @Override
+    public void onLoginSuccess(User user) {
+        if (user instanceof Student) {
+            showStudentDashboard((Student) user);
+        } else if (user instanceof Instructor) {
+            showInstructorDashboard((Instructor) user);
+        }
+    }
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="solid" class="section">
+            <div class="section-content">
+                <h2>SOLID Principles</h2>
+                <p>PaNotify adheres to SOLID principles to create a maintainable, extensible codebase:</p>
+                
+                <div class="solid-principle">
+                    <h3>S - Single Responsibility Principle</h3>
+                    <p>Each class in PaNotify has a single responsibility:</p>
+                    <ul>
+                        <li><strong>Model classes</strong> are responsible only for data representation</li>
+                        <li><strong>Service classes</strong> handle specific business logic domains (ExamService, CourseService)</li>
+                        <li><strong>UI classes</strong> are focused on specific aspects of the interface (ExamsTab, CoursesTab)</li>
+                    </ul>
+                </div>
+                
+                <div class="solid-principle">
+                    <h3>O - Open/Closed Principle</h3>
+                    <p>The architecture is open for extension but closed for modification:</p>
+                    <ul>
+                        <li>New UI tabs can be added by implementing the <code>StudentTab</code> or <code>InstructorTab</code> interfaces</li>
+                        <li>New user types could be added by extending the <code>User</code> base class</li>
+                        <li>New exam question types could be supported without changing the core <code>Exam</code> class</li>
+                    </ul>
+                </div>
+                
+                <div class="solid-principle">
+                    <h3>L - Liskov Substitution Principle</h3>
+                    <p>Subtypes can be used in place of their parent types:</p>
+                    <ul>
+                        <li><code>Student</code> and <code>Instructor</code> can be used anywhere a <code>User</code> is expected</li>
+                        <li>All tab implementations can be used interchangeably through their respective interfaces</li>
+                    </ul>
+                </div>
+                
+                <div class="solid-principle">
+                    <h3>I - Interface Segregation Principle</h3>
+                    <p>Interfaces are focused and specific:</p>
+                    <ul>
+                        <li>The <code>StudentTab</code> interface contains only methods needed by all student tabs</li>
+                        <li>The <code>InstructorTab</code> interface is separate from <code>StudentTab</code>, reflecting their different responsibilities</li>
+                    </ul>
+                </div>
+                
+                <div class="solid-principle">
+                    <h3>D - Dependency Inversion Principle</h3>
+                    <p>High-level modules depend on abstractions, not concrete implementations:</p>
+                    <ul>
+                        <li>UI components receive service objects through constructor injection</li>
+                        <li>Services work with interface types rather than concrete implementations when possible</li>
+                    </ul>
+                    <pre class="code-example">
+// Dashboard depends on service interfaces, not implementations
+public class StudentDashboard {
+    private Student student;
+    private UserService userService;
+    private CourseService courseService;
+    private ExamService examService;
+    
+    // Dependencies injected through constructor
+    public StudentDashboard(Stage primaryStage, Student student, 
+                          UserService userService, CourseService courseService, 
+                          ExamService examService) {
+        this.student = student;
+        this.userService = userService;
+        this.courseService = courseService;
+        this.examService = examService;
+        // ...
+    }
+}</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 PaNotify | Educational Application for Managing Exams</p>
+            <p>This documentation describes the object-oriented principles and properties used in the PaNotify project.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

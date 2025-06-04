@@ -1,0 +1,276 @@
+/* Global Styles */
+:root {
+    --primary-color: #00d355;
+    --secondary-color: #004d21;
+    --text-color: #333;
+    --bg-color: #f8f9fa;
+    --section-bg: #fff;
+    --code-bg: #f5f5f5;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    background-color: var(--code-bg);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Navigation */
+#navbar {
+    background-color: white;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    padding: 0 1rem;
+}
+
+.nav-link {
+    padding: 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color);
+    box-shadow: inset 0 -3px 0 var(--primary-color);
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 70px; /* For smooth scrolling with fixed header */
+}
+
+.section-content {
+    background-color: var(--section-bg);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+}
+
+/* Code Examples */
+.example-container {
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.code-example {
+    background-color: var(--code-bg);
+    padding: 1.5rem;
+    overflow-x: auto;
+    border-radius: 0 0 8px 8px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    white-space: pre;
+}
+
+/* Benefits Lists */
+.benefits, .solid-principle {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background-color: rgba(0, 211, 85, 0.05);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 8px 8px 0;
+}
+
+.benefits ul, .solid-principle ul {
+    margin-left: 1.5rem;
+}
+
+.benefits li, .solid-principle li {
+    margin-bottom: 0.5rem;
+}
+
+/* UML Diagram */
+.uml-preview {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.uml-diagram {
+    max-width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin: 1rem 0;
+}
+
+.caption {
+    font-style: italic;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.7rem;
+    }
+    
+    h3 {
+        font-size: 1.3rem;
+    }
+    
+    .nav-container {
+        justify-content: flex-start;
+    }
+    
+    .section-content {
+        padding: 1.5rem;
+    }
+    
+    main {
+        padding: 0 1rem;
+    }
+}
+
+/* Dark Mode - Optional for users who prefer it */
+@media (prefers-color-scheme: dark) {
+    .dark-mode-enabled {
+        --text-color: #f0f0f0;
+        --bg-color: #121212;
+        --section-bg: #1e1e1e;
+        --code-bg: #2d2d2d;
+        --border-color: #444;
+    }
+    
+    .dark-mode-enabled code {
+        color: #e0e0e0;
+    }
+    
+    .dark-mode-enabled .nav-link {
+        color: #e0e0e0;
+    }
+}
+
+/* Animation for section transitions */
+.section {
+    transition: opacity 0.3s ease;
+}
+
+/* Print styles */
+@media print {
+    #navbar {
+        display: none;
+    }
+    
+    .section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    
+    .section-content {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    body {
+        font-size: 12pt;
+    }
+    
+    .uml-diagram {
+        max-height: 8in;
+    }
+} 
