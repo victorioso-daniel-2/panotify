@@ -1,5 +1,0 @@
-module:MyApp
-com.panotify
-com.panotify.model
-com.panotify.service
-com.panotify.util
